@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "MDD10A.h"
 
-MDD10A::MDD10A(int pwmPin, int dirPin, bool forward = 0; int pwm = 0) {
+MDD10A::MDD10A(int pwmPin, int dirPin, bool forward = true, int pwm = 0) {
     _pwmPin = pwmPin;
     _dirPin = dirPin;
     _forward = forward;
