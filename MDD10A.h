@@ -1,6 +1,6 @@
 class MDD10A {
 public:
-    MDD10A(int pwmPin, int dirPin, bool forward = true, int pwm = 0);
+    MDD10A(int pwmPin, int dirPin, bool forward = true, int pwm = 0, bool reverseCheck = false);
     void setDirection(bool forward);
     bool getDirection();
     void setPWM(int val);
@@ -10,4 +10,5 @@ private:
     int _dirPin;
     bool _forward;
     int _PWM;
+    bool _reverseCheck;
 };

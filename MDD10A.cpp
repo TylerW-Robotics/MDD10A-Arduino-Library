@@ -1,11 +1,12 @@
 #include "Arduino.h"
 #include "MDD10A.h"
 
-MDD10A::MDD10A(int pwmPin, int dirPin, bool forward = true, int pwm = 0) {
+MDD10A::MDD10A(int pwmPin, int dirPin, bool forward = true, int pwm = 0, bool reverseCheck = false) {
     _pwmPin = pwmPin;
     _dirPin = dirPin;
     _forward = forward;
     _PWM = pwm;
+    _reverseCheck = reverseCheck;
 
     pinMode(_pwmPin, OUTPUT);
     pinMode(_dirPin, OUTPUT);
@@ -16,7 +17,11 @@ MDD10A::MDD10A(int pwmPin, int dirPin, bool forward = true, int pwm = 0) {
 
 void MDD10A::setDirection(bool forward) {
     _forward = forward;
-    digitalWrite(_dirPin, _forward);
+    if (_reverseCheck) {
+        digitalWrite(_dirPin, !_forward);
+    } else {
+        digitalWrite(_dirPin, _forward);
+    }
 }
 
 bool MDD10A::getDirection() {
